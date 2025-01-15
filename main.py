@@ -1,33 +1,33 @@
-class Employee:
-    salery = 3000
-    total_employee = 0
-    
+from abc import ABC,abstractmethod
+
+class Person(ABC):
     def __init__(self,name,family):
         self.name = name
         self.family = family
-        
     
-    @property
+    @abstractmethod
+    def full_name(self):
+        pass
+
+
+class Employee(Person):
+    salery = 3000
+    
+
     def full_name(self):
         return f"{self.name} {self.family}"
     
-    @full_name.setter
-    def full_name(self,name_family):
-        self.name, self.family = name_family.split(" ")
+
+class Employer(Person):
+    salery = 100000
     
-    @full_name.deleter
     def full_name(self):
-        self.name = None
-        self.family = None
+        return f"{self.name} {self.family}"
+        
         
 emp_1 = Employee('amir','attary')
+print(emp_1.full_name())
 
-print(emp_1.full_name)
+emp_2 = Employer('maryam','farjan')
+print(emp_2.full_name())
 
-emp_1.full_name = "hasan ajamy"
-
-print(emp_1.full_name)
-
-del emp_1.full_name
-
-print(emp_1.full_name)
