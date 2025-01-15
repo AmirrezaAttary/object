@@ -1,58 +1,33 @@
-#Person
-class Person:
-    def __init__(self,name,family):
-        self.name = name
-        self.family = family
+class Car:
+    def __init__(self,):
+        self.color = "red"
+        self.__speed = 200
+
+    def set_speed(self,new_speed):
+        self.__speed = new_speed
         
-    def full_name(self):
-        return f"{self.name} {self.family}"
     
-    
-#Employee
-class Employee(Person):
-    salery = 3000
-    def __init__(self,name,family,position):
-        super().__init__(name, family)
-        self.position = position
-    
-    def job(self):
-        return f"I am an employee, my name is {self.full_name()} and I work as a {self.position}."
-    
-
-#Manager
-class Manager:
-    def authority(self):
-        return "I am a manager and I have authority to approve or reject projects."
-    
-#CTO    
-class CTO(Employee,Manager):
-    salery  = 6000
-    def job(self):
-        return f"I am an employee, my name is {self.full_name()} and I work as a CTO."
+    def get_speed(self):
+        return self.__speed
         
-#Intern
-class Intern(Employee):
-    salery = 1000
-    def job(self):
-        return "learning new things"
+peride = Car()   
 
-print('********************************')
+print(peride.get_speed())
 
-emp1 = Employee('amirreza','attary','Backend Developer')
-print(emp1.job())
-print(emp1.salery)
+peride.set_speed(500)
 
-print('********************************')
+print(peride.get_speed())
+        
+# class Car:
+#     def __init__(self):
+#         self.a = 10
+#         self._b = 20
+#         self.__c = 30
+        
+# peride = Car()
+        
+# print(peride.a)
+# print(peride._b)
+# print(peride.__c)    
 
-emp2 = CTO('amirreza','attary','Backend Developer')
-print(emp2.job())
-print(emp2.salery)
-print(emp2.authority())
-
-print('********************************')
-
-emp3 = Intern('amirreza','attary','Backend Developer')
-print(emp3.job())
-print(emp3.salery)
-
-
+  
