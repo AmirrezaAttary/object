@@ -23,3 +23,5 @@ emp2 = Empoloyee('ali',30)
 print(emp1)
 print(emp2.__repr__())
 print(emp1+emp2)
+
+
