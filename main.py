@@ -1,5 +1,3 @@
-import datetime
-
 class Employee:
     salery = 3000
     total_employee = 0
@@ -7,45 +5,29 @@ class Employee:
     def __init__(self,name,family):
         self.name = name
         self.family = family
-        Employee.total_employee += 1
+        
     
+    @property
     def full_name(self):
         return f"{self.name} {self.family}"
     
-    @classmethod
-    def raise_salery(cls,new_salery):
-        if type(new_salery) == int:
-            cls.salery = new_salery
-        else:
-            raise ValueError
-        
-    @classmethod
-    def create_from_string(cls,string):
-        name, family = string.split("-")
-        return cls(name, family)
+    @full_name.setter
+    def full_name(self,name_family):
+        self.name, self.family = name_family.split(" ")
     
-    
-    @staticmethod
-    def is_workday(day):
-        if day.weekday() == 5 or day.weekday() == 6:
-            return False
-        return True
+    @full_name.deleter
+    def full_name(self):
+        self.name = None
+        self.family = None
         
-# emp_1 = Employee('amir','attary')
-# emp_2 = Employee('hasan','ajamy')
+emp_1 = Employee('amir','attary')
 
-date = datetime.datetime.now()
+print(emp_1.full_name)
 
-emp_3 = Employee.create_from_string('amir-attary')
-print(emp_3.is_workday(date))
-print(emp_3.full_name())
+emp_1.full_name = "hasan ajamy"
 
-# print("before")
-# # print(emp_1.full_name(),' - ',emp_1.salery)
-# # print(emp_2.full_name(),' - ',emp_2.salery)
+print(emp_1.full_name)
 
-# Employee.raise_salery(6000)
+del emp_1.full_name
 
-# print("after")
-# print(emp_1.full_name(),' - ',emp_1.salery)
-# print(emp_2.full_name(),' - ',emp_2.salery)
+print(emp_1.full_name)
