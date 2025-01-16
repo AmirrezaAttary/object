@@ -1,33 +1,30 @@
-from abc import ABC,abstractmethod
+import random
 
-class Person(ABC):
-    def __init__(self,name,family):
-        self.name = name
-        self.family = family
-    
-    @abstractmethod
-    def full_name(self):
-        pass
+class BingGame:
+    player_list = []
+    def __init__(self):
+        self.name = input("enter your name : ")
+        self.__rand_number = random.randint(0,10)
+        self.__guess_left = 3
+        self.__win_state = False
+        self.player_list.append(self)
 
 
-class Employee(Person):
-    salery = 3000
-    
+    def check_answer(self, answer):
+        if answer == self.__rand_number:
+            self.__win_state = True
+            return True
+        elif answer > self.__rand_number:
+            print("Too high")
+            self.__guess_left -= 1
+            return False
+        else:
+            print("Too low")
+            self.__guess_left -= 1
+            return False
 
-    def full_name(self):
-        return f"{self.name} {self.family}"
-    
-
-class Employer(Person):
-    salery = 100000
-    
-    def full_name(self):
-        return f"{self.name} {self.family}"
-        
-        
-emp_1 = Employee('amir','attary')
-print(emp_1.full_name())
-
-emp_2 = Employer('maryam','farjan')
-print(emp_2.full_name())
-
+if __name__ == "__main__":
+    while True:
+        user = BingGame()
+        print(BingGame.player_list)
+        print({user.name},{user.rand_number},{user.guess_left})
